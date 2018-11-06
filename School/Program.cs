@@ -76,6 +76,13 @@ namespace School
                         Console.WriteLine($"Teacher Name: {teacher.TeacherName1}, Salary: {teacher.Salary}, Id:{teacher.TeacherId} ");
                         break;
 
+                    case "3":
+                        Console.WriteLine("Please try again.Still working on this option.");
+                        break;
+
+                    case "4":
+                        Console.WriteLine("Please try again.Still working on this option.");
+
                     case "5":
                         {
 
@@ -93,7 +100,7 @@ namespace School
                             var tea = School.GetTeachers();
                             foreach (var t in tea)
                             {
-                                Console.WriteLine($"{t.TeacherName1}, {t.TeacherId},{t.Salary}");
+                                Console.WriteLine($"Teacher Name: {t.TeacherName1}, TeacherId:{t.TeacherId},Salary: {t.Salary}");
                             }
                         }
 
