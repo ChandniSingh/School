@@ -6,72 +6,7 @@ namespace School
     {
         static void Main(string[] args)
         {
-            /*
-            var Teacher1 = new Teacher("Col1")
-            {
-                TeacherId = 12,
-                Salary = 190M,
-                StartDate = DateTime.Now
-
-
-            };
-
-
-
-            //Instance of the class Student
-            var Student1 = new Student("Singh")
-           
-            {
-                //StudentId = 12345,
-               // StudentName = "Singh",
-               TeacherName = Teacher1,
-                Transport = "Bus",
-                Scores = 90,
-                StudentGrade = 1
-                
-            };
-
-            var Student2 = new Student("Singh2")
-            {
-               // StudentId = 12346,
-                //StudentName = "Singh2",
-                StudentGrade = 2,
-                Transport = "Own",
-                Scores = 80,
-                TeacherName = Teacher1,
-                Startdate = DateTime.Now
-
-
-            };
-
-
-    */
-
-            /*
-               Lesson 3
-
-            var Student1 = School.CreateStudent("Singh1", 1,TypeOfTransport.Bus);
-            var Student2 = School.CreateStudent("Singh2", 2);
-            var teacher1 = School.CreateTeacher("Col1", 30000.00M);
-
-
-           
-            Console.WriteLine($"Student Name = {Student1.StudentName}, " +
-                $"Id = {Student1.StudentId}," +
-                $" Grade = {Student1.StudentGrade}," +
-                $" Teacher = {teacher1.TeacherName1}," +
-                $"Transport = {Student1.Transport}," +
-                $" Start Date ={Student1.Startdate} ");
-
-          
-           Console.WriteLine($"Student Name = {Student2.StudentName}, " +
-               $"Id = {Student2.StudentId}," +
-               $" Grade = {Student2.StudentGrade}," +
-               $" Teacher = {teacher1.TeacherName1}," +
-               $"Transport = {Student2.Transport}," +
-               $" Start Date ={Student2.Startdate} ");
-
-    */
+             
 
             ///Create a Menu for the Front Page
             ///
@@ -79,37 +14,94 @@ namespace School
             Console.WriteLine("...........................");
 
             Console.WriteLine("Welcome to the School");
-            Console.WriteLine("Select an option");
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("1. New Student");
-            Console.WriteLine("2. New Teacher");
 
-            var option = Console.ReadLine();
-
-            switch (option)
+            while (true)
             {
-                case "0":
-                    return;
-                case "1":
-                    Console.Write("Enter Students Name: ");
-                    var name = Console.ReadLine();
+                Console.WriteLine("Select an option");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("1. New Student");
+                Console.WriteLine("2. New Teacher");
+                Console.WriteLine("3. Test Scores");
+                Console.WriteLine("4. Leaves");
+                Console.WriteLine("5. Print all Students");
+                Console.WriteLine("6. Print all Teachers");
 
-                    Console.Write("Enter Grade: ");
-                    var grade = Console.ReadLine();
+                var option = Console.ReadLine();
 
-                    Console.WriteLine("Select Transport: ");
+                switch (option)
+                {
+                    case "0":
+                        return;
+                    case "1":
+                        Console.Write("Enter Students Name: ");
+                        var name = Console.ReadLine();
 
-                    var Trans = Enum.GetNames(typeof(TypeOfTransport));
+                        Console.Write("Enter Grade: ");
+                        var grade =Convert.ToInt32(Console.ReadLine());
 
-                    for (int i=0; i < Trans.Length; i++)
-                    {
-                        Console.WriteLine($"{i+ 1}. {Trans[i]}");
-                    }
+                        Console.WriteLine("Select Transport: ");
 
-                    break;
+                        var Trans = Enum.GetNames(typeof(TypeOfTransport));
 
-                default:
-                    break;
+                        for (int i = 0; i < Trans.Length; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {Trans[i]}");
+                        }
+
+                        Console.Write("Enter Transport Type: ");
+                        var readLine = Console.ReadLine();
+                        var number = Convert.ToInt32(readLine);
+
+
+                     var TransportType= Enum.Parse<TypeOfTransport>(Trans[number-1]);
+
+                        var student = School.CreateStudent(name,grade,TransportType);
+
+                        Console.WriteLine($"Student Name: {student.StudentName}, Grade: {student.StudentGrade}, Transport: {student.Transport}, Student id {student.StudentId} ");
+
+
+
+                        break;
+
+                    case "2":
+                        Console.Write("Enter Teacher Name: ");
+                        var Teachername = Console.ReadLine();
+
+                        Console.Write("Enter Salary: ");
+                        var  salary = Convert.ToDecimal(Console.ReadLine());
+
+                        var teacher = School.CreateTeacher(Teachername,salary);
+
+                        
+                        Console.WriteLine($"Teacher Name: {teacher.TeacherName1}, Salary: {teacher.Salary}, Id:{teacher.TeacherId} ");
+                        break;
+
+                    case "5":
+                        {
+
+                            var stud = School.GetStudents();
+
+                            foreach (var s in stud)
+                            {
+                                Console.WriteLine($"Student Name: {s.StudentName}, Grade: {s.StudentGrade}, Transport: {s.Transport},Id: {s.StudentId}");
+                            }
+                            break;
+                        }
+
+                    case "6":
+                        {
+                            var tea = School.GetTeachers();
+                            foreach (var t in tea)
+                            {
+                                Console.WriteLine($"{t.TeacherName1}, {t.TeacherId},{t.Salary}");
+                            }
+                        }
+
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
 

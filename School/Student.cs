@@ -13,14 +13,14 @@ namespace School
 
     class Student    {
 
-        private static int lastStudentId = 0;
+       // private static int lastStudentId = 0;
 
         #region Properties
 
         /// <summary>
         /// defining properties for the Student Class
         /// </summary>
-        public int StudentId { get;  }
+        public int StudentId { get; set; }
         public String StudentName { get; set; }
         public int StudentGrade { get; set; }
         public TypeOfTransport Transport { get; set; }
@@ -38,7 +38,7 @@ namespace School
         public Student()
         {
             Startdate = DateTime.Now;
-            StudentId = ++lastStudentId;
+            //StudentId = ++lastStudentId;
         }
 
 
